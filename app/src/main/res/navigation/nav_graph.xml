@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/searchBusinessesFragment">
+
+    <fragment
+        android:id="@+id/searchBusinessesFragment"
+        android:name="com.example.yeplapp.ui.searchbusinesses.SearchBusinessesFragment"
+        android:label="fragment_search_businesses"
+        tools:layout="@layout/fragment_search_businesses" >
+        <action
+            android:id="@+id/action_searchBusinessesFragment_to_bussinesDetailsFragment"
+            app:destination="@id/bussinesDetailsFragment"
+            app:enterAnim="@anim/slide_from_right"
+            app:exitAnim="@anim/slide_to_left"
+            app:popEnterAnim="@anim/slide_from_left"
+            app:popExitAnim="@anim/slide_to_rigth"/>
+    </fragment>
+    <fragment
+        android:id="@+id/bussinesDetailsFragment"
+        android:name="com.example.yeplapp.ui.bussinesdetails.BusinessDetailsFragment"
+        android:label="fragment_bussines_details"
+        tools:layout="@layout/fragment_bussines_details" />
+</navigation>
