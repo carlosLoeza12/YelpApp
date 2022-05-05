@@ -2,5 +2,10 @@
     <string name="app_name">YelpApp</string>
 
     <!-- Search Business-->
-    <string name="search_no_results">No Results</string>
+    <string name="search_hint">Enter text for search</string>
+    <string name="search_title">Search</string>
+    <string name="search_business_name">Name</string>
+    <string name="search_business_category">Category</string>
+    <string name="search_business_address">Address</string>
+    <string name="search_do_search">Please do a search</string>
 </resources>

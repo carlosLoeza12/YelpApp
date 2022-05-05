@@ -22,5 +22,9 @@
         android:id="@+id/bussinesDetailsFragment"
         android:name="com.example.yeplapp.ui.bussinesdetails.BusinessDetailsFragment"
         android:label="fragment_bussines_details"
-        tools:layout="@layout/fragment_bussines_details" />
+        tools:layout="@layout/fragment_bussines_details" >
+        <argument
+            android:name="CurrentBusiness"
+            app:argType="com.example.yeplapp.data.model.Businesses" />
+    </fragment>
 </navigation>
