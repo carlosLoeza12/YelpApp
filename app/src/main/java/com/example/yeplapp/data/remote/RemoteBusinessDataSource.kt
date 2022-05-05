@@ -9,7 +9,8 @@ class RemoteBusinessDataSource @Inject constructor(private val webService: WebSe
         return webService.getBusinesses(
             term = term,
             latitude = latitude,
-            longitude = longitude
+            longitude = longitude,
+            locale = "es_MX"
         )
     }
 }

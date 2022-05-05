@@ -10,6 +10,7 @@ interface WebService {
     suspend fun getBusinesses(
         @Query("term") term: String,
         @Query("latitude") latitude: Double,
-        @Query("longitude") longitude: Double
+        @Query("longitude") longitude: Double,
+        @Query("locale") locale: String
     ): Response
 }

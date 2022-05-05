@@ -27,6 +27,8 @@ class BusinessViewModel @Inject constructor(private val repository: BusinessRepo
     val _notResults: LiveData<Boolean>
         get() = notResults
 
+    val positionRecycler = MutableLiveData<Int>()
+
     fun getBusinessList(term: String, latitude: Double, longitude: Double){
         viewModelScope.launch(Dispatchers.IO) {
             isLoadingData.postValue(true)

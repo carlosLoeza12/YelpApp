@@ -33,8 +33,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:visibility="gone">
+            app:layout_constraintBottom_toBottomOf="parent">
 
             <TextView
                 android:id="@+id/txtNoResults"
@@ -43,7 +42,7 @@
                 android:textColor="@color/black"
                 android:textSize="28sp"
                 android:gravity="center"
-                android:text="@string/search_no_results">
+                android:text="@string/search_do_search">
             </TextView>
 
             <ImageView
@@ -51,11 +50,18 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_gravity="center"
-                android:src="@drawable/no_results">
+                android:src="@drawable/search">
 
             </ImageView>
-
         </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerBusiness"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/item_business">
+
+        </androidx.recyclerview.widget.RecyclerView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
