@@ -28,5 +28,4 @@ class AppModule {
     @Provides
     fun provideBusinessService(retrofit: Retrofit): WebService = retrofit.create(WebService::class.java)
 
-
 }

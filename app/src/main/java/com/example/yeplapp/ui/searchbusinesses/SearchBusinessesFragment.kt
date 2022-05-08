@@ -1,6 +1,6 @@
 package com.example.yeplapp.ui.searchbusinesses
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.core.view.isVisible
@@ -13,16 +13,24 @@ import dagger.hilt.android.AndroidEntryPoint
 import androidx.appcompat.widget.SearchView
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.yeplapp.core.hasLocationPermission
+import com.example.yeplapp.core.requestLocationPermission
 import com.example.yeplapp.data.model.Businesses
 import com.example.yeplapp.ui.adapters.BusinessAdapter
-
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
+import com.vmadalin.easypermissions.EasyPermissions
+import com.vmadalin.easypermissions.dialogs.SettingsDialog
 
 @AndroidEntryPoint
-class SearchBusinessesFragment : Fragment(R.layout.fragment_search_businesses), BusinessAdapter.OnBusinessClickListener {
+class SearchBusinessesFragment : Fragment(R.layout.fragment_search_businesses),
+    BusinessAdapter.OnBusinessClickListener, EasyPermissions.PermissionCallbacks {
 
     private lateinit var binding: FragmentSearchBusinessesBinding
     private val viewModel by viewModels<BusinessViewModel>()
     private lateinit var businessAdapter: BusinessAdapter
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private var business =""
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -39,6 +47,7 @@ class SearchBusinessesFragment : Fragment(R.layout.fragment_search_businesses), 
         })
 
         setHasOptionsMenu(true)
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -46,13 +55,17 @@ class SearchBusinessesFragment : Fragment(R.layout.fragment_search_businesses), 
         super.onCreateOptionsMenu(menu, inflater)
         val searchItem = menu.findItem(R.id.itemSearch)
         val searchView = searchItem.actionView as SearchView
+        searchView.queryHint = getString(R.string.search_hint)
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                if (!query.isNullOrEmpty()) {
+                if (!query.isNullOrEmpty() && hasLocationPermission()) {
                     binding.recyclerBusiness.isVisible = false
                     viewModel.positionRecycler.postValue(0)
-                    viewModel.getBusinessList(query, 19.3910036,-99.284044)
+                    doSearchBusiness(query)
+                }else{
+                    business = query ?:"Restaurantes"
+                    requestLocationPermission()
                 }
                 searchView.clearFocus()
                 return true
@@ -78,9 +91,47 @@ class SearchBusinessesFragment : Fragment(R.layout.fragment_search_businesses), 
 
     override fun onBusinessClick(businesses: Businesses, position: Int) {
         viewModel.positionRecycler.postValue(position)
-        val action = SearchBusinessesFragmentDirections.actionSearchBusinessesFragmentToBussinesDetailsFragment(businesses)
+        val action = SearchBusinessesFragmentDirections
+            .actionSearchBusinessesFragmentToBussinesDetailsFragment(businesses)
         findNavController().navigate(action)
     }
 
+    //Permission
+
+    override fun onPermissionsGranted(requestCode: Int, perms: List<String>) {
+        doSearchBusiness(business)
+    }
+
+    override fun onPermissionsDenied(requestCode: Int, perms: List<String>) {
+        if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
+            SettingsDialog.Builder(requireActivity()).build().show()
+        } else {
+            this.requestLocationPermission()
+        }
+    }
+
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions,grantResults, this)
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun doSearchBusiness(business: String){
+        //get location
+        if(hasLocationPermission()){
+            fusedLocationClient.lastLocation.addOnSuccessListener(requireActivity())  { location ->
+                if(location != null){
+                    viewModel.getBusinessList(business, location.latitude,location.longitude)
+                }
+            }
+        }else{
+            requestLocationPermission()
+        }
+    }
 
 }
