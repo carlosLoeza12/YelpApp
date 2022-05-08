@@ -8,4 +8,15 @@
     <string name="search_business_category">Category</string>
     <string name="search_business_address">Address</string>
     <string name="search_do_search">Please do a search</string>
+    <string name="search_permissions">This application cannot work without Location Permission</string>
+
+    <!-- Details Business-->
+    <string name="details_title">Business Title</string>
+    <string name="details_information_title">General information</string>
+    <string name="details_location_title">Location</string>
+    <string name="details_category_title">Category:</string>
+    <string name="details_address_title">Address:</string>
+    <string name="details_phone_title">Phone:</string>
+    <string name="details_price_title">Price:</string>
+
 </resources>

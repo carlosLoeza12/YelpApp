@@ -68,4 +68,10 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
     //LiveData
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.4.1"
+    //play services
+    implementation 'com.google.android.gms:play-services-maps:18.0.2'
+    //Easy Permission
+    implementation 'com.vmadalin:easypermissions-ktx:1.0.0'
+    //services location
+    implementation 'com.google.android.gms:play-services-location:19.0.1'
 }

@@ -10,5 +10,6 @@ object AppConstants {
     // Create Logger
     private val logger = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
     var okHttp = OkHttpClient.Builder().addInterceptor(HeaderInterceptor()).addInterceptor(logger)
-
+    //Request permission
+    const val  PERMISSION_LOCATION_REQUEST_CODE = 1
 }

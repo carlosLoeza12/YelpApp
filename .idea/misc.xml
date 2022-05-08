@@ -3,12 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/carlo/AndroidStudioProjects/YeplApp/app/src/main/res/drawable/ic_baseline_star_rate_24.xml" value="0.26875" />
+        <entry key="..\:/Users/carlo/AndroidStudioProjects/YeplApp/app/src/main/res/drawable/gradient.xml" value="0.13796296296296295" />
         <entry key="..\:/Users/carlo/AndroidStudioProjects/YeplApp/app/src/main/res/layout/activity_main.xml" value="0.2375" />
-        <entry key="..\:/Users/carlo/AndroidStudioProjects/YeplApp/app/src/main/res/layout/fragment_bussines_details.xml" value="0.2526041666666667" />
+        <entry key="..\:/Users/carlo/AndroidStudioProjects/YeplApp/app/src/main/res/layout/fragment_bussines_details.xml" value="0.27314814814814814" />
         <entry key="..\:/Users/carlo/AndroidStudioProjects/YeplApp/app/src/main/res/layout/fragment_search_businesses.xml" value="0.2526041666666667" />
-        <entry key="..\:/Users/carlo/AndroidStudioProjects/YeplApp/app/src/main/res/layout/item_business.xml" value="0.4" />
-        <entry key="..\:/Users/carlo/AndroidStudioProjects/YeplApp/app/src/main/res/menu/search_menu.xml" value="0.4" />
+        <entry key="..\:/Users/carlo/AndroidStudioProjects/YeplApp/app/src/main/res/layout/fragment_splash.xml" value="0.21829710144927536" />
+        <entry key="..\:/Users/carlo/AndroidStudioProjects/YeplApp/app/src/main/res/layout/item_business.xml" value="0.2526041666666667" />
       </map>
     </option>
   </component>
